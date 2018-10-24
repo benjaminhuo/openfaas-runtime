@@ -15,7 +15,7 @@
 apiVersion: build.knative.dev/v1alpha1
 kind: BuildTemplate
 metadata:
-  name: openfaas-go-runtime
+  name: openfaas-nodejs-runtime
   annotations:
     origin: github.com/triggermesh/openfaas-runtime
 spec:
@@ -38,26 +38,18 @@ spec:
     - |
       cd /workspace/${DIRECTORY}
       cat <<EOF > Dockerfile
-        FROM golang:1.11.1-alpine as builder
+        FROM alpine:3.7
+        RUN apk --update add nodejs nodejs-npm
 
-        RUN apk --no-cache add make curl git\
+        RUN apk --no-cache add curl \
             && curl -sL https://github.com/openfaas/faas/releases/download/0.9.6/fwatchdog > /usr/bin/fwatchdog \
             && chmod +x /usr/bin/fwatchdog
 
-        WORKDIR /go/src/github.com/triggermesh/handler
         COPY . .
-        RUN go get -v
-        RUN go install 
 
-        FROM alpine:3.7
-        # Needed to reach the hub
-        RUN apk --no-cache add ca-certificates 
-
-        COPY --from=builder /usr/bin/fwatchdog  /usr/bin/fwatchdog
-        COPY --from=builder /go/bin/handler  /usr/bin/handler
-        ENV fprocess "/usr/bin/handler"
-
-        CMD ["/usr/bin/fwatchdog"]
+        RUN npm i
+        ENV fprocess="node ${HANDLER}"
+        CMD ["fwatchdog"]
 
       EOF
   - name: export
