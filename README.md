@@ -33,7 +33,7 @@ Hello, Go examples!
 
 ### Support
 
-We would love your feedback on this CLI tool so don't hesitate to let us know what is wrong and how we could improve it, just file an [issue](https://github.com/triggermesh/tm/issues/new)
+We would love your feedback on these Openfaas knative templates so don't hesitate to let us know what is wrong and how we could improve it, just file an [issue](https://github.com/triggermesh/tm/issues/new)
 
 ### Code of Conduct
 
