@@ -37,4 +37,4 @@ We would love your feedback on these Openfaas knative templates so don't hesitat
 
 ### Code of Conduct
 
-This plugin is by no means part of [CNCF](https://www.cncf.io/) but we abide by its [code of conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md)
+These templates are by no means part of [CNCF](https://www.cncf.io/) but we abide by its [code of conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md)
