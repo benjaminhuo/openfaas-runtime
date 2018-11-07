@@ -30,7 +30,7 @@ spec:
     default: .
   - name: HANDLER
     description: The name of python file where handler function located
-    default: ""
+    default: "handler.py"
   steps:
   - name: dockerfile
     image: gcr.io/kaniko-project/executor@sha256:30ba460a034a8051b3222a32e20cb6049741e58384e3adf8c8987c004e2f2ab9
@@ -50,7 +50,7 @@ spec:
         COPY . .
         RUN if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
         ENV fprocess="python ${HANDLER}"
-        HEALTHCHECK --interval=1s CMD [ -e /tmp/.lock ] || exit 1
+        
         CMD ["fwatchdog"]
       EOF
   - name: export

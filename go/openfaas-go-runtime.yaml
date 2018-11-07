@@ -50,15 +50,13 @@ spec:
         RUN go install 
 
         FROM alpine:3.7
-        # Needed to reach the hub
+        
         RUN apk --no-cache add ca-certificates 
-
         COPY --from=builder /usr/bin/fwatchdog  /usr/bin/fwatchdog
         COPY --from=builder /go/bin/handler  /usr/bin/handler
         ENV fprocess "/usr/bin/handler"
 
         CMD ["/usr/bin/fwatchdog"]
-
       EOF
   - name: export
     image: gcr.io/kaniko-project/executor@sha256:30ba460a034a8051b3222a32e20cb6049741e58384e3adf8c8987c004e2f2ab9
