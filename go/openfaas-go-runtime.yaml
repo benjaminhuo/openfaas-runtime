@@ -17,17 +17,17 @@ kind: Task
 metadata:
   name: go-openfaas-runtime
 spec:
-  inputs:
-    params:
-    - name: IMAGE
-      description: The URI of the image to push, including registry host
-    - name: DIRECTORY
-      description: The subdirectory of the workspace/repo
-      default: "."
-    - name: SSH_KEY
-      description: SSH key 
-      default: "placeholder"
-    resources:
+  params:
+  - name: IMAGE
+    description: The URI of the image to push, including registry host
+  - name: DIRECTORY
+    description: The subdirectory of the workspace/repo
+    default: "."
+  - name: SSH_KEY
+    description: SSH key 
+    default: "placeholder"
+  resources:
+    inputs:
     - name: sources
       targetPath: /workspace
       type: git

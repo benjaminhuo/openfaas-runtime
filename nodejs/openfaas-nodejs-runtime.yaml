@@ -17,17 +17,17 @@ kind: Task
 metadata:
   name: nodejs-openfaas-runtime
 spec:
-  inputs:
-    params:
-    - name: IMAGE
-      description: The URI of the image to push, including registry host
-    - name: DIRECTORY
-      description: The subdirectory of the workspace/repo
-      default: "."
-    - name: HANDLER
-      description: The name of js file where handler function located
-      default: handler.js
-    resources:
+  params:
+  - name: IMAGE
+    description: The URI of the image to push, including registry host
+  - name: DIRECTORY
+    description: The subdirectory of the workspace/repo
+    default: "."
+  - name: HANDLER
+    description: The name of js file where handler function located
+    default: handler.js
+  resources:
+    inputs:
     - name: sources
       type: git
       targetPath: /workspace
